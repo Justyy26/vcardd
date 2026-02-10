@@ -4,7 +4,6 @@ const noBtn = document.getElementById("noBtn");
 
 let noCount = 0;
 
-/* Your exact filenames */
 const noImages = [
   "no1.png",
   "no2.png",
@@ -16,30 +15,49 @@ const noImages = [
 noBtn.addEventListener("click", () => {
 
   if (noCount < noImages.length) {
+
     image.src = noImages[noCount];
     noCount++;
 
-    // YES button grows
-    let size = 18 + (noCount * 6);
-    yesBtn.style.fontSize = size + "px";
-    yesBtn.style.padding = (14 + noCount * 4) + "px " + (28 + noCount * 6) + "px";
+    /* YES grows aggressively */
+    let scale = 1 + (noCount * 0.4);
+    yesBtn.style.transform = `translateX(-50%) scale(${scale})`;
 
-  } else {
-    triggerYes();
+    /* Move NO randomly */
+    moveNoButton();
+
+    /* Last NO removes button */
+    if (noCount === noImages.length) {
+      setTimeout(() => {
+        noBtn.style.display = "none";
+      }, 500);
+    }
+
   }
 
 });
 
-yesBtn.addEventListener("click", triggerYes);
-
-function triggerYes() {
+yesBtn.addEventListener("click", () => {
 
   image.src = "yes.jpeg";
 
   document.querySelector(".question").innerText =
     "YAYYYYY ❤️ See you on Valentine’s!";
 
-  yesBtn.style.display = "none";
-  noBtn.style.display = "none";
+  yesBtn.style.transform = "translateX(-50%) scale(1.4)";
+});
 
+/* Random movement */
+function moveNoButton() {
+
+  const container = document.querySelector(".buttons");
+
+  const maxX = container.clientWidth - noBtn.clientWidth;
+  const maxY = container.clientHeight - noBtn.clientHeight;
+
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+
+  noBtn.style.left = randomX + "px";
+  noBtn.style.top = randomY + "px";
 }
