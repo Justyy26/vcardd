@@ -62,17 +62,21 @@ button {
 }
 
 /* Overlay text */
+
 .overlayText {
   position: fixed;
-  top: 40%;
+  top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255, 77, 166, 0.9);
+  background: rgba(255, 77, 166, 0.95);
   color: white;
-  padding: 20px 35px;
-  border-radius: 20px;
-  font-size: 1.4rem;
-  font-family: 'Dancing Script', cursive;
+  padding: 22px 38px;
+  border-radius: 16px;
+
+  font-family: Arial, sans-serif; /* SUPER readable */
+  font-size: 1.3rem;
+  font-weight: bold;
+
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
@@ -81,4 +85,35 @@ button {
 
 .overlayText.show {
   opacity: 1;
+}
+
+@keyframes confettiFall {
+  from {
+    transform: translateY(-50px) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(250px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.heart {
+  position: fixed;
+  bottom: -20px;
+  color: #ff4da6;
+  font-size: 18px;
+  opacity: 0.6;
+  animation: floatUp linear forwards;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-110vh);
+  }
 }
