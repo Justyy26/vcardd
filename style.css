@@ -1,46 +1,57 @@
 body {
   background: #ffeaf3;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
   padding-top: 40px;
+  overflow-x: hidden;
 }
 
+/* Romantic heading */
 .question {
-  font-size: 2rem;
-  color: #b03060;
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  color: #d63384;
 }
 
-.card {
-  margin-top: 30px;
-}
-
+/* Bigger image */
 #mainImage {
-  width: 280px;
-  height: 280px;
+  width: 340px;
+  height: 340px;
   object-fit: cover;
   border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.buttons {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
   margin-top: 20px;
 }
 
+/* Button container */
+.buttons {
+  margin-top: 30px;
+  position: relative;
+  height: 200px;
+}
+
+/* Base button */
 button {
   border: none;
-  padding: 14px 28px;
-  margin: 10px;
-  border-radius: 30px;
-  font-size: 18px;
+  padding: 18px 40px;
+  font-size: 20px;
+  border-radius: 35px;
   cursor: pointer;
   transition: 0.3s;
 }
 
+/* YES centered */
 #yesBtn {
-  background: #ff7eb9;
+  background: #ff4da6;
   color: white;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
+/* NO starts near center */
 #noBtn {
-  background: #ccc;
+  background: #bbbbbb;
+  position: absolute;
+  left: 60%;
 }
