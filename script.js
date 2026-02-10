@@ -1,28 +1,45 @@
-const yesBtn = document.getElementById('yesBtn');
-const noBtn = document.getElementById('noBtn');
-const questionText = document.querySelector('h1'); // Select the <h1> element
-let noClicks = 0;
+const image = document.getElementById("mainImage");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
 
-yesBtn.onclick = function () {
-  questionText.innerHTML = "Yay, you're my Valentine now! 💖"; // Change the <h1> text
-  noBtn.classList.add('no-hide'); // Hide the No button when Yes is clicked
-  yesBtn.classList.add('yay-text'); // Optionally make the Yes button more prominent
-};
+let noCount = 0;
 
-noBtn.onclick = function () {
-  noClicks++;
-  if (noClicks < 3) {
-    // Make the "No" button smaller after each click
-    noBtn.classList.add('no-small');
-    questionText.textContent = "Are you sure? 💔"; // Change the <h1> text when No is clicked
+/* Your exact filenames */
+const noImages = [
+  "no1.png",
+  "no2.png",
+  "no3.png",
+  "no4.jpeg",
+  "no5.png"
+];
+
+noBtn.addEventListener("click", () => {
+
+  if (noCount < noImages.length) {
+    image.src = noImages[noCount];
+    noCount++;
+
+    // YES button grows
+    let size = 18 + (noCount * 6);
+    yesBtn.style.fontSize = size + "px";
+    yesBtn.style.padding = (14 + noCount * 4) + "px " + (28 + noCount * 6) + "px";
+
   } else {
-    questionText.textContent = "Don't be shy, just say yes! 😍"; // More encouragement if No is clicked again
+    triggerYes();
   }
 
-  if (noClicks === 5) {
-    // After 5 clicks, hide the "No" button and make "Yes" the only visible option
-    noBtn.classList.add('no-hide');
-    yesBtn.classList.add('yay-text');
-    questionText.textContent = "Come on, you know you want to! 💖"; // Final message before Yes takes over
-  }
-};
+});
+
+yesBtn.addEventListener("click", triggerYes);
+
+function triggerYes() {
+
+  image.src = "yes.jpeg";
+
+  document.querySelector(".question").innerText =
+    "YAYYYYY ❤️ See you on Valentine’s!";
+
+  yesBtn.style.display = "none";
+  noBtn.style.display = "none";
+
+}
